@@ -5,12 +5,14 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.RequestManager
 import com.kemalurekli.firstapi.R
 import com.kemalurekli.firstapi.model.NewsResult
+import com.kemalurekli.firstapi.view.HomeFragmentDirections
 import javax.inject.Inject
 
 class NewsRecyclerAdapter @Inject constructor(
@@ -56,7 +58,22 @@ class NewsRecyclerAdapter @Inject constructor(
             titleText.text = newsP.name
             sourceText.text = newsP.source
             dateText.text = edittingDate(newsP.date)
+
+            setOnClickListener {
+                val choosenNewsTitle = newsP.name
+                val choosenNewsContent = newsP.description
+                val choosenNewsSource = newsP.source
+                val choosenNewsImageUrl = newsP.imageUrl
+                val choosenNewsDate = edittingDate(newsP.date)
+                val choosenNewsUrl = newsP.url
+                Navigation.findNavController(it).navigate(HomeFragmentDirections.
+                actionHomeFragmentToDetailsFragment(choosenNewsTitle,choosenNewsSource,
+                    choosenNewsContent,choosenNewsImageUrl,choosenNewsDate,choosenNewsUrl))
+            }
+
+
         }
+
     }
 
     override fun getItemCount(): Int = news.size

@@ -26,7 +26,25 @@
         android:id="@+id/detailsFragment"
         android:name="com.kemalurekli.firstapi.view.DetailsFragment"
         android:label="fragment_details"
-        tools:layout="@layout/fragment_details" />
+        tools:layout="@layout/fragment_details" >
+        <argument
+            android:name="title"
+            app:argType="string" />
+        <argument
+            android:name="source"
+            app:argType="string" />
+        <argument android:name="content"
+            app:argType="string" />
+        <argument
+            android:name="imageurl"
+            app:argType="string" />
+        <argument
+            android:name="date"
+            app:argType="string" />
+        <argument
+            android:name="url"
+            app:argType="string" />
+    </fragment>
     <fragment
         android:id="@+id/favNewsFragment"
         android:name="com.kemalurekli.firstapi.view.FavNewsFragment"

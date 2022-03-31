@@ -14,6 +14,8 @@ class NewsFragmentFactory@Inject constructor(
     override fun instantiate(classLoader: ClassLoader, className: String): Fragment {
         return when(className){
             HomeFragment::class.java.name -> HomeFragment(glide,newsRecyclerAdapter)
+            DetailsFragment::class.java.name -> DetailsFragment(glide)
+
             else -> super.instantiate(classLoader, className)
         }
     }
