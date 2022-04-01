@@ -51,7 +51,7 @@ class HomeFragment @Inject constructor(
 
 
     private fun subscribeToObservers() {
-        viewModel.getDataFromApi()
+       // viewModel.getDataFromApi()
         viewModel.newsListFromApi.observe(viewLifecycleOwner, Observer {
             when (it.status) {
                 Status.SUCCESS -> {

@@ -3,12 +3,17 @@ package com.kemalurekli.firstapi.adapter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
+import android.widget.TextView
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.RequestManager
 import com.kemalurekli.firstapi.R
 import com.kemalurekli.firstapi.model.NewsResult
+import com.kemalurekli.firstapi.roomdb.FavoriteNews
+import com.kemalurekli.firstapi.view.HomeFragmentDirections
 import javax.inject.Inject
 
 class FavNewsRecyclerAdapter @Inject constructor(
@@ -17,12 +22,12 @@ class FavNewsRecyclerAdapter @Inject constructor(
 
     class NewsViewHolder (itemView : View) : RecyclerView.ViewHolder (itemView)
 
-    private val diffUtil = object : DiffUtil.ItemCallback<NewsResult>() {
-        override fun areItemsTheSame(oldItem: NewsResult, newItem: NewsResult): Boolean {
+    private val diffUtil = object : DiffUtil.ItemCallback<FavoriteNews>() {
+        override fun areItemsTheSame(oldItem: FavoriteNews, newItem: FavoriteNews): Boolean {
             return oldItem == newItem
         }
 
-        override fun areContentsTheSame(oldItem: NewsResult, newItem: NewsResult): Boolean {
+        override fun areContentsTheSame(oldItem: FavoriteNews, newItem: FavoriteNews): Boolean {
             return oldItem == newItem
         }
 
@@ -31,7 +36,7 @@ class FavNewsRecyclerAdapter @Inject constructor(
 
     private val recyclerListDiffer = AsyncListDiffer(this, diffUtil)
 
-    var news: List<NewsResult>
+    var news: List<FavoriteNews>
         get() = recyclerListDiffer.currentList
         set(value) = recyclerListDiffer.submitList(value)
 
@@ -42,8 +47,29 @@ class FavNewsRecyclerAdapter @Inject constructor(
         return NewsViewHolder(view)    }
 
     override fun onBindViewHolder(holder: NewsViewHolder, position: Int) {
-        TODO("Not yet implemented")
+        val imageView = holder.itemView.findViewById<ImageView>(R.id.iv_news)
+        val titleText = holder.itemView.findViewById<TextView>(R.id.tv_News_title)
+        val sourceText = holder.itemView.findViewById<TextView>(R.id.tv_source)
+        val dateText = holder.itemView.findViewById<TextView>(R.id.tv_date)
+        val newsP = news[position]
+        holder.itemView.apply {
+            glide.load(newsP.newsImageUrl).into(imageView)
+            titleText.text = newsP.newsTitle
+            sourceText.text = newsP.newsSource
+            dateText.text = edittingDate(newsP.newsDate)
+
+            setOnClickListener {
+
+                //item position
+            }
+
+
+        }
     }
 
     override fun getItemCount(): Int = news.size
+
+    private fun edittingDate(date : String) : String {
+        return "${date.subSequence(0,10)} - ${date.subSequence(11,16)}"
+    }
 }

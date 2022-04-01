@@ -53,5 +53,5 @@
         <action
             android:id="@+id/action_favNewsFragment_to_favNewsDetailsFragment"
             app:destination="@id/favNewsDetailsFragment" />
-    </fragment>
+    </fragment><action android:id="@+id/action_global_favNewsFragment" app:destination="@id/favNewsFragment"/>
 </navigation>

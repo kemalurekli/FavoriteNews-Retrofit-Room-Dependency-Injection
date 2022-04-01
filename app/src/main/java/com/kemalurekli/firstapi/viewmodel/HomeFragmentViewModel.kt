@@ -17,16 +17,15 @@ class HomeFragmentViewModel @Inject constructor(
     private val repository: NewsRepositoryInterface
 ) : ViewModel() {
 
-    // This is for get saved data from Room. it should be in FavNewsFragmentViewModel!
-    val NewsListFromRoom = repository.getNews()
-
     // These data from Retrofit API
 
     private val news = MutableLiveData<Resource<NewsResponse>>()
     val newsListFromApi : LiveData<Resource<NewsResponse>>
         get() = news
 
-
+    init {
+        getDataFromApi()
+    }
 
     fun getDataFromApi (){
         news.value = Resource.loading(null)
