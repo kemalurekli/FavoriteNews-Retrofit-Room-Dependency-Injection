@@ -22,6 +22,10 @@ class NewsRepository @Inject constructor(
         newsDao.deleteFavoriteNews(favoriteNews)
     }
 
+    override fun getFavNewsDetails(favoriteNewsID: Int): LiveData<FavoriteNews> {
+        return newsDao.getAFavNews(favoriteNewsID)
+    }
+
     override fun getNews(): LiveData<List<FavoriteNews>> {
         return newsDao.observeFavoriteNews()
     }

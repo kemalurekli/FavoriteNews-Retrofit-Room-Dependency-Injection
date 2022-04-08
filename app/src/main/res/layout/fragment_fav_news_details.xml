@@ -1,14 +1,82 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_height="match_parent"
     tools:context=".view.FavNewsDetailsFragment">
 
-    <!-- TODO: Update blank fragment layout -->
+
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:id="@+id/iv_saved_detail"
+        android:layout_marginTop="10dp"
+        android:scaleType="centerCrop"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="wrap_content"
+        android:id="@+id/tv_saved_title_details"
+        android:textColor="@color/black"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:layout_margin="10dp"
+        app:layout_constraintStart_toStartOf="@id/iv_saved_detail"
+        app:layout_constraintEnd_toEndOf="@id/iv_saved_detail"
+        app:layout_constraintTop_toBottomOf="@id/iv_saved_detail" />
 
-</FrameLayout>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/tv_saved_content_details"
+        android:textSize="18sp"
+        android:textColor="@color/black"
+        app:layout_constraintStart_toStartOf="@id/tv_saved_title_details"
+        app:layout_constraintEnd_toEndOf="@id/tv_saved_title_details"
+        app:layout_constraintTop_toBottomOf="@id/tv_saved_title_details"
+        android:layout_margin="10dp" />
+
+    <TextView
+        android:id="@+id/tv_saved_source_details"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:layout_marginTop="15dp"
+        app:layout_constraintStart_toStartOf="@+id/tv_saved_content_details"
+        app:layout_constraintTop_toBottomOf="@+id/tv_saved_content_details" />
+
+    <TextView
+        android:id="@+id/tv_saved_date_details"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="@+id/tv_saved_content_details"
+        app:layout_constraintTop_toTopOf="@+id/tv_saved_source_details" />
+
+    <Button
+        android:id="@+id/btn_delete_news"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Delete the News"
+        android:textAllCaps="false"
+        android:layout_marginTop="25dp"
+        app:layout_constraintEnd_toEndOf="@+id/tv_saved_date_details"
+        app:layout_constraintTop_toBottomOf="@+id/tv_saved_date_details" />
+
+
+
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

@@ -18,6 +18,7 @@ class NewsFragmentFactory@Inject constructor(
             HomeFragment::class.java.name -> HomeFragment(glide,newsRecyclerAdapter)
             DetailsFragment::class.java.name -> DetailsFragment(glide)
             FavNewsFragment::class.java.name -> FavNewsFragment(glide, favRecyclerAdapter)
+            FavNewsDetailsFragment::class.java.name -> FavNewsDetailsFragment(glide)
             else -> super.instantiate(classLoader, className)
         }
     }

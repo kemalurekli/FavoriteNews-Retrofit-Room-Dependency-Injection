@@ -11,6 +11,8 @@ interface NewsRepositoryInterface {
 
     suspend fun deleteNews (favoriteNews: FavoriteNews)
 
+    fun getFavNewsDetails (favoriteNewsID : Int) : LiveData<FavoriteNews>
+
     fun getNews() : LiveData<List<FavoriteNews>>
 
     suspend fun newsDownload() : Resource<NewsResponse>

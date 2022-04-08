@@ -13,15 +13,19 @@
         <action
             android:id="@+id/action_homeFragment_to_detailsFragment"
             app:destination="@id/detailsFragment" />
-        <action
-            android:id="@+id/action_homeFragment_to_favNewsFragment"
-            app:destination="@id/favNewsFragment" />
     </fragment>
     <fragment
         android:id="@+id/favNewsDetailsFragment"
         android:name="com.kemalurekli.firstapi.view.FavNewsDetailsFragment"
         android:label="fragment_fav_news_details"
-        tools:layout="@layout/fragment_fav_news_details" />
+        tools:layout="@layout/fragment_fav_news_details" >
+        <argument
+            android:name="clickedItem"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_favNewsDetailsFragment_to_newsWebViewFragment"
+            app:destination="@id/newsWebViewFragment" />
+    </fragment>
     <fragment
         android:id="@+id/detailsFragment"
         android:name="com.kemalurekli.firstapi.view.DetailsFragment"
@@ -44,6 +48,9 @@
         <argument
             android:name="url"
             app:argType="string" />
+        <action
+            android:id="@+id/action_detailsFragment_to_newsWebViewFragment"
+            app:destination="@id/newsWebViewFragment" />
     </fragment>
     <fragment
         android:id="@+id/favNewsFragment"
@@ -53,5 +60,18 @@
         <action
             android:id="@+id/action_favNewsFragment_to_favNewsDetailsFragment"
             app:destination="@id/favNewsDetailsFragment" />
-    </fragment><action android:id="@+id/action_global_favNewsFragment" app:destination="@id/favNewsFragment"/>
+    </fragment>
+    <action
+        android:id="@+id/action_global_favNewsFragment"
+        app:destination="@id/favNewsFragment"
+        app:popUpToInclusive="true" />
+    <fragment
+        android:id="@+id/newsWebViewFragment"
+        android:name="com.kemalurekli.firstapi.view.NewsWebViewFragment"
+        android:label="fragment_news_web_view"
+        tools:layout="@layout/fragment_news_web_view" >
+        <argument
+            android:name="newsUrlForWeb"
+            app:argType="string" />
+    </fragment>
 </navigation>

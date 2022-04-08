@@ -13,6 +13,8 @@ import com.bumptech.glide.RequestManager
 import com.kemalurekli.firstapi.R
 import com.kemalurekli.firstapi.model.NewsResult
 import com.kemalurekli.firstapi.roomdb.FavoriteNews
+import com.kemalurekli.firstapi.view.FavNewsFragment
+import com.kemalurekli.firstapi.view.FavNewsFragmentDirections
 import com.kemalurekli.firstapi.view.HomeFragmentDirections
 import javax.inject.Inject
 
@@ -59,8 +61,7 @@ class FavNewsRecyclerAdapter @Inject constructor(
             dateText.text = edittingDate(newsP.newsDate)
 
             setOnClickListener {
-
-                //item position
+                Navigation.findNavController(it).navigate(FavNewsFragmentDirections.actionFavNewsFragmentToFavNewsDetailsFragment(newsP.id.toString()))
             }
 
 
