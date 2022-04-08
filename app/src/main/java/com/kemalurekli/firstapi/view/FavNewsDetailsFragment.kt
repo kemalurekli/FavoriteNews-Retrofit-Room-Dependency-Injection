@@ -9,6 +9,7 @@ import androidx.activity.OnBackPressedCallback
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
+import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.bumptech.glide.RequestManager
@@ -55,7 +56,12 @@ class FavNewsDetailsFragment @Inject constructor(
             binding.tvSavedSourceDetails.text = news.newsSource
             binding.tvSavedDateDetails.text = news.newsDate
             glide.load(news.newsImageUrl).into(binding.ivSavedDetail)
+                binding.btnWebSource.setOnClickListener {
+                    Navigation.findNavController(it).navigate(FavNewsDetailsFragmentDirections.actionFavNewsDetailsFragmentToNewsWebViewFragment(news.newsUrl))
+                }
         })
     }
+
+
 
 }

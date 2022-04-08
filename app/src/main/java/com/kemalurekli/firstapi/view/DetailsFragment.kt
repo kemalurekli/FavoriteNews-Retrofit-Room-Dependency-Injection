@@ -58,6 +58,9 @@ class DetailsFragment @Inject constructor(
             viewModel.saveRoom(title,content,imageUrl,source,date,url)
             Toast.makeText(requireContext(), "News Saved!", Toast.LENGTH_LONG).show()
         }
+        binding.btnWebDetail.setOnClickListener {
+            Navigation.findNavController(it).navigate(DetailsFragmentDirections.actionDetailsFragmentToNewsWebViewFragment(url))
+        }
     }
 
 

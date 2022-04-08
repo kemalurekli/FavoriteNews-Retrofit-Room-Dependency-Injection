@@ -70,9 +70,21 @@
         android:layout_height="wrap_content"
         android:text="Save the News"
         android:textAllCaps="false"
-        android:layout_marginTop="25dp"
-        app:layout_constraintEnd_toEndOf="@+id/tv_date_details"
-        app:layout_constraintTop_toBottomOf="@+id/tv_date_details" />
+        android:layout_margin="10dp"
+        app:layout_constraintTop_toBottomOf="@+id/tv_date_details"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Go to the News"
+        android:textAllCaps="false"
+        android:id="@+id/btn_web_detail"
+        android:layout_margin="10dp"
+        app:layout_constraintTop_toBottomOf="@+id/tv_date_details"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
