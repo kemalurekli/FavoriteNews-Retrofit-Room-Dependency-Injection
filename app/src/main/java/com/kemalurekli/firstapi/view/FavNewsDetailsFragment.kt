@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -49,19 +50,34 @@ class FavNewsDetailsFragment @Inject constructor(
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel.showSavedNewsDetails(arguments?.get("clickedItem").toString().toInt())
-            .observe(viewLifecycleOwner, Observer { news->
-            binding.tvSavedTitleDetails.text = news.newsTitle
-            binding.tvSavedContentDetails.text = news.newsContent
-            binding.tvSavedSourceDetails.text = news.newsSource
-            binding.tvSavedDateDetails.text = news.newsDate
-            glide.load(news.newsImageUrl).into(binding.ivSavedDetail)
-                binding.btnWebSource.setOnClickListener {
-                    Navigation.findNavController(it).navigate(FavNewsDetailsFragmentDirections.actionFavNewsDetailsFragmentToNewsWebViewFragment(news.newsUrl))
-                }
-        })
-    }
+        val newsArgument = arguments?.get("clickedItem").toString().toInt()
+            viewModel.showSavedNewsDetails(newsArgument)
+                .observe(viewLifecycleOwner, Observer { news->
+                    binding.tvSavedTitleDetails.text = news.newsTitle
+                    binding.tvSavedContentDetails.text = news.newsContent
+                    binding.tvSavedSourceDetails.text = news.newsSource
+                    binding.tvSavedDateDetails.text = news.newsDate
+                    glide.load(news.newsImageUrl).into(binding.ivSavedDetail)
+                    binding.btnWebSource.setOnClickListener {
+                        Navigation.findNavController(it).navigate(FavNewsDetailsFragmentDirections.actionFavNewsDetailsFragmentToNewsWebViewFragment(news.newsUrl))
+                    }
+                    binding.btnDeleteNews.setOnClickListener {
+                        viewModel.deleteNews(news)
+                        Navigation.findNavController(it).navigate(FavNewsDetailsFragmentDirections.actionGlobalFavNewsFragment())
+                        Toast.makeText(requireContext(), "Deleted the News", Toast.LENGTH_SHORT).show()
 
+                    }
+                })
+
+
+
+
+
+    }
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
 
 
 }

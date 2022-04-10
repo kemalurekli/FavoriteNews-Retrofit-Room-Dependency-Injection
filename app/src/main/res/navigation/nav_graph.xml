@@ -25,6 +25,9 @@
         <action
             android:id="@+id/action_favNewsDetailsFragment_to_newsWebViewFragment"
             app:destination="@id/newsWebViewFragment" />
+        <action
+            android:id="@+id/action_favNewsDetailsFragment_to_favNewsFragment"
+            app:destination="@id/favNewsFragment" />
     </fragment>
     <fragment
         android:id="@+id/detailsFragment"

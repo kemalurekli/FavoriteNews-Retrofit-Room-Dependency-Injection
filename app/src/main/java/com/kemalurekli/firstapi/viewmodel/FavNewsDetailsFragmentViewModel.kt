@@ -21,5 +21,9 @@ class FavNewsDetailsFragmentViewModel @Inject constructor(
         return repository.getFavNewsDetails(newsID)
     }
 
+    fun deleteNews(favnews: FavoriteNews) = viewModelScope.launch {
+        repository.deleteNews(favnews)
+    }
+
 
 }

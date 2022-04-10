@@ -14,11 +14,9 @@ class DetailsFragmentViewModel @Inject constructor(
 ) : ViewModel() {
 
 
-    fun deleteArt(favnews: FavoriteNews) = viewModelScope.launch {
-        repository.deleteNews(favnews)
-    }
 
-    fun insertArt(favnews: FavoriteNews) = viewModelScope.launch {
+
+    fun insertNews(favnews: FavoriteNews) = viewModelScope.launch {
         repository.insertNews(favnews)
     }
 
@@ -26,6 +24,10 @@ class DetailsFragmentViewModel @Inject constructor(
                  Source : String, Date : String, Url : String){
 
         val dataSave = FavoriteNews(Title,Content,ImageUrl,Source,Date,Url)
-        insertArt(dataSave)
+        insertNews(dataSave)
+    }
+
+    fun checkTheNewsSaveOrNot (favnews: FavoriteNews) {
+
     }
 }
