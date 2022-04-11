@@ -6,13 +6,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import com.bumptech.glide.RequestManager
-import com.kemalurekli.firstapi.R
 import com.kemalurekli.firstapi.databinding.FragmentDetailsBinding
 import com.kemalurekli.firstapi.viewmodel.DetailsFragmentViewModel
-import com.kemalurekli.firstapi.viewmodel.HomeFragmentViewModel
 import javax.inject.Inject
 
 
@@ -39,12 +38,12 @@ class DetailsFragment @Inject constructor(
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val title : String = arguments?.get("title").toString()
-        val content : String = arguments?.get("content").toString()
-        val source : String = arguments?.get("source").toString()
-        val date : String = arguments?.get("date").toString()
-        val imageUrl : String = arguments?.get("imageurl").toString()
-        val url : String = arguments?.get("url").toString()
+        val title: String = arguments?.get("title").toString()
+        val content: String = arguments?.get("content").toString()
+        val source: String = arguments?.get("source").toString()
+        val date: String = arguments?.get("date").toString()
+        val imageUrl: String = arguments?.get("imageurl").toString()
+        val url: String = arguments?.get("url").toString()
 
         binding.tvTitleDetails.text = title
         binding.tvContentDetails.text = content
@@ -53,15 +52,27 @@ class DetailsFragment @Inject constructor(
 
         glide.load(imageUrl).into(binding.ivDetail).view
 
+        binding.btnSaveDetails.visibility = View.INVISIBLE
 
         binding.btnSaveDetails.setOnClickListener {
-            viewModel.saveRoom(title,content,imageUrl,source,date,url)
+            viewModel.saveRoom(title, content, imageUrl, source, date, url)
             Toast.makeText(requireContext(), "News Saved!", Toast.LENGTH_LONG).show()
-            it.visibility = View.GONE
+            it.visibility = View.INVISIBLE
         }
         binding.btnWebDetail.setOnClickListener {
-            Navigation.findNavController(it).navigate(DetailsFragmentDirections.actionDetailsFragmentToNewsWebViewFragment(url))
+            Navigation.findNavController(it)
+                .navigate(DetailsFragmentDirections.actionDetailsFragmentToNewsWebViewFragment(url))
         }
+
+        viewModel.checkTheNewsSaveOrNot(url).observe(viewLifecycleOwner,Observer {newsCondition ->
+            if (newsCondition != null){
+            }else{
+                binding.btnSaveDetails.visibility = View.VISIBLE
+            }
+        })
+
+
+
     }
 
 

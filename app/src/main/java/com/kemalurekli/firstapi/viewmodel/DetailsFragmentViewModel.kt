@@ -1,10 +1,14 @@
 package com.kemalurekli.firstapi.viewmodel
 
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
+import android.app.Activity
+import android.app.Application
+import androidx.lifecycle.*
 import com.kemalurekli.firstapi.di.NewsRepositoryInterface
 import com.kemalurekli.firstapi.roomdb.FavoriteNews
+import com.kemalurekli.firstapi.view.DetailsFragment
 import dagger.hilt.android.lifecycle.HiltViewModel
+import dagger.hilt.android.scopes.ViewModelScoped
+import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -16,7 +20,7 @@ class DetailsFragmentViewModel @Inject constructor(
 
 
 
-    fun insertNews(favnews: FavoriteNews) = viewModelScope.launch {
+    private fun insertNews(favnews: FavoriteNews) = viewModelScope.launch {
         repository.insertNews(favnews)
     }
 
@@ -27,7 +31,15 @@ class DetailsFragmentViewModel @Inject constructor(
         insertNews(dataSave)
     }
 
-    fun checkTheNewsSaveOrNot (favnews: FavoriteNews) {
-
+    fun checkTheNewsSaveOrNot (url : String) : LiveData<FavoriteNews?> {
+        return repository.saveOrNot(url)
     }
+
+
+
+
+
+
+
+
 }

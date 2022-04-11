@@ -44,4 +44,10 @@ class NewsRepository @Inject constructor(
             Resource.error("No data!", null)
         }
     }
+
+    override fun saveOrNot(url: String): LiveData<FavoriteNews?> {
+        return newsDao.saveOrNotNews(url)
+    }
+
+
 }

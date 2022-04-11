@@ -16,4 +16,7 @@ interface FavoriteNewsDao {
 
     @Query("SELECT * FROM favoritenews WHERE id = :NewsId")
     fun getAFavNews (NewsId : Int) : LiveData<FavoriteNews>
+
+    @Query("SELECT * FROM favoritenews WHERE newsUrl = :Newsurl")
+    fun saveOrNotNews(Newsurl : String) : LiveData<FavoriteNews?>
 }

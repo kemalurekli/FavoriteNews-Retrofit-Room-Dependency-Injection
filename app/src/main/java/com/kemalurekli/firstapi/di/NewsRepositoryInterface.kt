@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import com.kemalurekli.firstapi.model.NewsResponse
 import com.kemalurekli.firstapi.roomdb.FavoriteNews
 import com.kemalurekli.firstapi.util.Resource
+import javax.annotation.Nullable
 
 interface NewsRepositoryInterface {
 
@@ -16,4 +17,6 @@ interface NewsRepositoryInterface {
     fun getNews() : LiveData<List<FavoriteNews>>
 
     suspend fun newsDownload() : Resource<NewsResponse>
+
+    fun saveOrNot(url : String) : LiveData<FavoriteNews?>
 }
