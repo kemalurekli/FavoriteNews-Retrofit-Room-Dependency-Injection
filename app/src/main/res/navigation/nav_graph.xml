@@ -27,7 +27,8 @@
             app:destination="@id/newsWebViewFragment" />
         <action
             android:id="@+id/action_favNewsDetailsFragment_to_favNewsFragment"
-            app:destination="@id/favNewsFragment" />
+            app:destination="@id/favNewsFragment"
+            app:popUpTo="@id/nav_graph" />
     </fragment>
     <fragment
         android:id="@+id/detailsFragment"
@@ -63,10 +64,16 @@
         <action
             android:id="@+id/action_favNewsFragment_to_favNewsDetailsFragment"
             app:destination="@id/favNewsDetailsFragment" />
+        <action
+            android:id="@+id/action_favNewsFragment_to_homeFragment"
+            app:destination="@id/homeFragment"
+            app:popUpTo="@id/nav_graph"
+            app:popUpToInclusive="true" />
     </fragment>
     <action
         android:id="@+id/action_global_favNewsFragment"
         app:destination="@id/favNewsFragment"
+        app:popUpTo="@id/nav_graph"
         app:popUpToInclusive="true" />
     <fragment
         android:id="@+id/newsWebViewFragment"
