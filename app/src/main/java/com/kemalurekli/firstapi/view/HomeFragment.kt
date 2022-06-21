@@ -39,23 +39,28 @@ class HomeFragment @Inject constructor(
     ): View? {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         viewModel = ViewModelProvider(requireActivity())[HomeFragmentViewModel::class.java]
-
-        subscribeToObservers()
         binding.rvNews.adapter = newsRecyclerAdapter
         binding.rvNews.layoutManager = LinearLayoutManager(requireContext())
-
-
+        subscribeToObservers()
         val view = binding.root
         return view
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        binding.refreshSwipe.setOnRefreshListener {
+            subscribeToObservers()
+            binding.refreshSwipe.isRefreshing = false
+        }
+    }
+
+
 
     private fun subscribeToObservers() {
-       // viewModel.getDataFromApi()
+        viewModel.getDataFromApi()
         viewModel.newsListFromApi.observe(viewLifecycleOwner, Observer {
             when (it.status) {
                 Status.SUCCESS -> {
-                    Toast.makeText(requireActivity(),"Success",Toast.LENGTH_LONG).show()
                    val newsLists =  it.data?.result
                     if (newsLists != null) {
                         newsRecyclerAdapter.news = newsLists
@@ -70,7 +75,6 @@ class HomeFragment @Inject constructor(
                 }
 
                 Status.LOADING -> {
-                    Toast.makeText(requireContext(),it.message ?: "Loading",Toast.LENGTH_LONG).show()
                     binding.progressBar.visibility = View.VISIBLE
 
 

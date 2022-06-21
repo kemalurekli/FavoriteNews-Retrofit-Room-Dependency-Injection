@@ -23,9 +23,7 @@ class HomeFragmentViewModel @Inject constructor(
     val newsListFromApi : LiveData<Resource<NewsResponse>>
         get() = news
 
-    init {
-        getDataFromApi()
-    }
+
 
     fun getDataFromApi (){
         news.value = Resource.loading(null)

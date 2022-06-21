@@ -58,7 +58,6 @@ class FavNewsFragment @Inject constructor(
 
     private fun getSavedNewsFromRoom() {
         viewModel.NewsListFromRoom.observe(viewLifecycleOwner, Observer {
-            Toast.makeText(requireActivity(),"Success",Toast.LENGTH_LONG).show()
             val newsLists =  it
             if (newsLists != null) {
                 favnewsRecyclerAdapter.news = newsLists

@@ -73,8 +73,8 @@
     <action
         android:id="@+id/action_global_favNewsFragment"
         app:destination="@id/favNewsFragment"
-        app:popUpTo="@id/nav_graph"
-        app:popUpToInclusive="true" />
+        app:popUpTo="@id/homeFragment"
+        app:popUpToInclusive="false" />
     <fragment
         android:id="@+id/newsWebViewFragment"
         android:name="com.kemalurekli.firstapi.view.NewsWebViewFragment"

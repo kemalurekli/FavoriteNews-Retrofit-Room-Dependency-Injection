@@ -37,8 +37,12 @@ class NewsRecyclerAdapter @Inject constructor(
     private val recyclerListDiffer = AsyncListDiffer(this, diffUtil)
 
     var news: List<NewsResult>
-        get() = recyclerListDiffer.currentList
-        set(value) = recyclerListDiffer.submitList(value)
+        get(){
+            return recyclerListDiffer.currentList
+        }
+        set(value) {
+            recyclerListDiffer.submitList(value)
+        }
 
 
 
@@ -70,10 +74,7 @@ class NewsRecyclerAdapter @Inject constructor(
                 actionHomeFragmentToDetailsFragment(choosenNewsTitle,choosenNewsSource,
                     choosenNewsContent,choosenNewsImageUrl,choosenNewsDate,choosenNewsUrl))
             }
-
-
         }
-
     }
 
     override fun getItemCount(): Int = news.size
